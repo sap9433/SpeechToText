@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <!-- include css in the header -->
+    <link rel="stylesheet" type="text/css" th:href="@{recorder.css}"/>
+
+    <title>Adding Static Resources (css, JavaScript, Images) to Thymeleaf</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>
+            <!-- include image from static resources -->
+            <!-- <img th:src="@{/img/logo.png}" alt="memorynotfound logo"/> -->
+            Adding Static Resources (css, JavaScript, Images) to Thymeleaf
+        </h1>
+        <div id="container"></div>
+    </div>
+
+    <!-- include javascript in the footer -->
+    <script type="text/javascript" th:src="@{/recorder.js}"></script>
+</body>
+</html>
