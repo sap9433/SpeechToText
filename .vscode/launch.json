@@ -23,6 +23,7 @@
             "stopOnEntry": false,
             "mainClass": "iit.talon.TalonApplication",
             "args": "",
+            "vmArgs": "-Dbroker=dev",
             "projectName": "talon"
         },
         {
