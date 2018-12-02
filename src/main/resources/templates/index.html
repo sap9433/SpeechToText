@@ -8,6 +8,7 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <!-- include css in the header -->
     <link rel="stylesheet" type="text/css" th:href="@{recorder.css}"/>
 
@@ -22,6 +23,13 @@
             Adding Static Resources (css, JavaScript, Images) to Thymeleaf
         </h1>
         <div id="container"></div>
+        <div id="controls">
+            <button id="recordButton">Record</button>
+            <button id="pauseButton" disabled>Pause</button>
+            <button id="stopButton" disabled>Stop</button>
+           </div>
+           <h3>Recordings</h3>
+           <ol id="recordingsList"></ol>
     </div>
 
     <!-- include javascript in the footer -->

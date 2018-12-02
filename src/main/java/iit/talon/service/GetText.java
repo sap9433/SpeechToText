@@ -1,7 +1,6 @@
 package iit.talon.service;
 import com.google.cloud.speech.v1p1beta1.RecognitionAudio;
 import com.google.cloud.speech.v1p1beta1.RecognitionConfig;
-import com.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding;
 import com.google.cloud.speech.v1p1beta1.RecognizeResponse;
 import com.google.cloud.speech.v1p1beta1.SpeechClient;
 import com.google.cloud.speech.v1p1beta1.SpeechRecognitionAlternative;
@@ -34,8 +33,6 @@ public class GetText {
       
             // Builds the sync recognize request    
             RecognitionConfig config = RecognitionConfig.newBuilder()
-                .setEncoding(AudioEncoding.FLAC)
-                .setSampleRateHertz(16000)
                 .setLanguageCode("en-US")
                 .build();
             RecognitionAudio audio = RecognitionAudio.newBuilder()

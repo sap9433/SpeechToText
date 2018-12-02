@@ -18,8 +18,9 @@ public class KafKaConsumer {
         logger.info("Received Messasge: " + message);
     }
 
-    @KafkaListener(topics = "recievedsound")
+    @KafkaListener(topics = "recievedsound1")
     public void processSound(String message) {
-        logger.info(cloudService.transcript());
+        //logger.info(cloudService.transcript());
+        logger.info("### KYA HAI YEHHH ### ");
     }
 }
