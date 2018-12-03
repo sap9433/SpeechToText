@@ -1,4 +1,4 @@
-package iit.talon;
+package iit.talon.configuration;
 
 import java.util.HashMap;
 import java.util.Map;
