@@ -12,6 +12,8 @@ function setConnected(connected) {
     $("#greetings").html("");
 }
 
+
+
 function connect() {
     var socket = new SockJS('/gs-guide-websocket');
     stompClient = Stomp.over(socket);
@@ -19,24 +21,15 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/greetings', function (greeting) {
-            showGreeting(greeting.body);
+            showTranscript(greeting.body);
         });
     });
 }
 
-function disconnect() {
-    if (stompClient !== null) {
-        stompClient.disconnect();
-    }
-    setConnected(false);
-    console.log("Disconnected");
-}
+$( document ).ready(connect);
 
-function sendName() {
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
-}
 
-function showGreeting(message) {
+function showTranscript(message) {
     $("#greetings").append("<tr><td>" + message + "</td></tr>");
 }
 
@@ -44,7 +37,5 @@ $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#connect" ).click(function() { connect(); });
-    $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendName(); });
 });
