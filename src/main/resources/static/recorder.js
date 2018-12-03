@@ -16,21 +16,20 @@ var stopButton = document.getElementById("stopButton");
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 
+//Stopwatch Codes
+var seconds = 0, minutes = 0, hours = 0, t, timerdiv = document.getElementById('timer');
+
 function startRecording() {
-    console.log("recordButton clicked");
- 
+    timer();
     var constraints = { audio: true, video:false }
  
     /*
     Disable the record button until we get a success or fail from getUserMedia()
     */
- 
     recordButton.disabled = true;
     stopButton.disabled = false;
  
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-        console.log("getUserMedia() success, stream created, initializing Recorder.js ...");
- 
         /* assign to gumStream for later use */
         gumStream = stream;
  
@@ -45,8 +44,6 @@ function startRecording() {
  
         //start the recording process
         rec.record()
- 
-        console.log("Recording started");
  
     }).catch(function(err) {
         //enable the record button if getUserMedia() fails
@@ -71,6 +68,13 @@ function stopRecording() {
  
     //create the wav blob and pass it on to createDownloadLink
     rec.exportWAV(createDownloadLink);
+
+    //Timer Codes
+    clearTimeout(t);
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    timerdiv.textContent = '';
 }
 
 function createDownloadLink(blob) {
@@ -102,7 +106,7 @@ function createDownloadLink(blob) {
 function createDownload(blob, filename, li) {
     var upload = document.createElement('a');
     upload.href = "#";
-    upload.innerHTML = "Upload";
+    upload.innerHTML = "Fetch Transcript";
     upload.addEventListener("click", function () {
         var xhr = new XMLHttpRequest();
         xhr.onload = function (e) {
@@ -119,3 +123,19 @@ function createDownload(blob, filename, li) {
     li.appendChild(upload);
 }
 
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    timerdiv.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    timer();
+}
+function timer() {
+    t = setTimeout(add, 1000);
+}

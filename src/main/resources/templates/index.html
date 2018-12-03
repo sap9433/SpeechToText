@@ -26,11 +26,16 @@
         <h1 class="header">
             A system to generate Speech to text in Real Time
         </h1>
-        <div id="container"></div>
-        <div id="controls">
-            <button class="mui-btn mui-btn--primary" id="recordButton">Record</button>
-            <button class="mui-btn mui-btn--primary" id="stopButton" disabled>Stop</button>
-        </div>
+        <div class="mui-container-fluid recordPanel">
+            <table width="100%">
+              <tr style="vertical-align:middle;">
+                <button class="mui-btn mui-btn--accemnt" disabled> Click on record and Speak.</button>
+                <button class="mui-btn mui-btn--primary" id="recordButton">Record</button>
+                <button class="mui-btn mui-btn--primary" id="stopButton" disabled>Stop</button>
+                <button class="mui-btn mui-btn--accemnt" disabled id="timer"></button>
+              </tr>
+            </table>
+          </div>
            <h3>Recordings</h3>
            <ol id="recordingsList"></ol>
     </div>

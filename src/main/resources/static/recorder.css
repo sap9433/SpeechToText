@@ -17,3 +17,9 @@ body{
     float: right;
     padding-right: 245px;
 }
+
+.recordPanel{
+    border: 1px solid #f3eaea;
+    padding: 20px;
+    margin: 10px;
+}
