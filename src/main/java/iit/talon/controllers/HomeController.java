@@ -10,9 +10,4 @@ public class HomeController {
     public String index() {
         return "index";
     }
-
-    @RequestMapping("/socket")
-    public String socketpage() {
-        return "socket";
-    }
 }

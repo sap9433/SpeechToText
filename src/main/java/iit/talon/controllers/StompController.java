@@ -9,6 +9,6 @@ public class StompController {
    @MessageMapping("/hello")
    @SendTo("/topic/greetings")
    public String greeting(String message) throws Exception {
-      return message;
+      return "Hi " + message;
    }
 }
