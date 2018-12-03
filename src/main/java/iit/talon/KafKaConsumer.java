@@ -15,12 +15,12 @@ public class KafKaConsumer {
     private static final Logger logger = LoggerFactory.getLogger(KafKaConsumer.class);
    @KafkaListener(topics = "test", groupId = "group-id")
     public void listen(String message) {
-        logger.info("Received Messasge: " + message);
+        //logger.info("Received Messasge: " + message);
     }
 
     @KafkaListener(topics = "recievedsound1")
-    public void processSound(String message) {
-        //logger.info(cloudService.transcript());
-        logger.info("### KYA HAI YEHHH ### ");
+    public void processSound(byte[] sounddata) {
+        logger.info(cloudService.transcript(sounddata));
+        //logger.info("### KYA HAI YEHHH ### ");
     }
 }

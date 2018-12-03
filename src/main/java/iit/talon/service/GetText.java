@@ -19,17 +19,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetText {
     private static final Logger logger = LoggerFactory.getLogger(GetText.class);
-    public String transcript() {
+    public String transcript(byte[] sound) {
         String finalresult = "";
         try (SpeechClient speechClient = SpeechClient.create()){
 
             // The path to the audio file to transcribe
-            String fileName = "/Users/diesel/Documents/BigDataProj/src/main/resources/audio.flac";
+            //String fileName = "/Users/diesel/Documents/BigDataProj/src/main/resources/audio.flac";
       
             // Reads the audio file into memory
-            Path path = Paths.get(fileName);
-            byte[] data = Files.readAllBytes(path);
-            ByteString audioBytes = ByteString.copyFrom(data);
+            //Path path = Paths.get(fileName);
+            //byte[] data = Files.readAllBytes(path);
+
+            ByteString audioBytes = ByteString.copyFrom(sound);
       
             // Builds the sync recognize request    
             RecognitionConfig config = RecognitionConfig.newBuilder()
@@ -48,7 +49,7 @@ public class GetText {
               // first (most likely) one here.
               SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
               finalresult += alternative.getTranscript();
-              logger.info("Received Messasge in group - group-id: " + finalresult);
+              //logger.info("Received Messasge in group - group-id: " + finalresult);
             }
           }catch(IOException e){
             finalresult =  e.getMessage();          

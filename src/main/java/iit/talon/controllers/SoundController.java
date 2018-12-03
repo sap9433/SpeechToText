@@ -22,7 +22,8 @@ public class SoundController {
        private KafkaTemplate<String, byte[]> kafkaBlobTemplate;
     @RequestMapping("/api/gettext")
     public String getText() {
-        return " Transcript is " + cloudService.transcript();
+        //return " Transcript is " + cloudService.transcript();
+        return "Need to change cloudService transcript";
     }
 
     @RequestMapping("/api/savesound")
