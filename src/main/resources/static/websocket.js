@@ -20,8 +20,8 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (greeting) {
-            showTranscript(greeting.body);
+        stompClient.subscribe('/topic/backToClient', function (transcript) {
+            showTranscript(transcript.body);
         });
     });
 }

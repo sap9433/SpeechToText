@@ -20,6 +20,10 @@ public class KafkaProducerConfig {
       configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
       configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
       configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+      configProps.put("message.max.bytes", "41943040");
+      configProps.put("max.request.size", "41943040");
+      configProps.put("replica.fetch.max.bytes", "41943040");
+      configProps.put("fetch.message.max.bytes", "41943040");
       return new DefaultKafkaProducerFactory<>(configProps);
    }
    @Bean

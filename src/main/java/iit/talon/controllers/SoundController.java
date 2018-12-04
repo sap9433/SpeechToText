@@ -29,7 +29,7 @@ public class SoundController {
     @RequestMapping("/api/savesound")
     public void sendMessage(@RequestParam MultipartFile  audio_data) throws IOException{
         byte[] bytes = audio_data.getBytes();
-        kafkaBlobTemplate.send("recievedsound1", bytes);
+        kafkaBlobTemplate.send("recieved_sound", bytes);
     }
     
     @RequestMapping("/api/savetext")

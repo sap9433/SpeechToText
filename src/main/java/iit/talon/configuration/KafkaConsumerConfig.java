@@ -24,6 +24,11 @@ public class KafkaConsumerConfig{
       props.put(ConsumerConfig.GROUP_ID_CONFIG, "group-id");
       props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
       props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
+      props.put("fetch.message.max.bytes", "41943040");
+      props.put("message.max.bytes", "41943040");
+      props.put("max.request.size", "41943040");
+      props.put("replica.fetch.max.bytes", "41943040");
+      props.put("fetch.message.max.bytes", "41943040");
       return new DefaultKafkaConsumerFactory<>(props);
    }
    @Bean

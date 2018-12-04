@@ -7,7 +7,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
+import iit.talon.configuration.TranscriptRepository;
 import iit.talon.service.GetText;
+import iit.talon.model.Transcript;;
 
 @Component
 public class KafKaConsumer {
@@ -16,23 +18,27 @@ public class KafKaConsumer {
 
     @Autowired
     private SimpMessagingTemplate webSocket;
+    @Autowired
+    private TranscriptRepository repository;
+
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
     private static final Logger logger = LoggerFactory.getLogger(KafKaConsumer.class);
 
-
-   @KafkaListener(topics = "test", groupId = "group-id")
+   @KafkaListener(topics = "transcriptToClient", groupId = "group-id")
     public void listen(String message) throws Exception{
         logger.info("Received Messasge: " + message);
-        webSocket.convertAndSend("/topic/greetings", message);
+        //Saves transcript in mongo
+        repository.save(new Transcript(""+message.hashCode(), message));
+        webSocket.convertAndSend("/topic/backToClient", message);
     }
 
-    @KafkaListener(topics = "recievedsound1")
+    @KafkaListener(topics = "recieved_sound")
     public void processSound(byte[] sounddata) {
         String transcript = cloudService.transcript(sounddata);
         logger.info(transcript);
-        kafkaTemplate.send("test", transcript);
+        kafkaTemplate.send("transcriptToClient", transcript);
     }
 }
